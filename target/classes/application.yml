@@ -1,0 +1,55 @@
+# Spring Boot 3 配置文件
+# SB3 推荐使用 YAML 格式 (与 SB2 相同, 但有些默认值变了)
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jdk17-sp3-demo
+
+  # ========== 数据源配置 ==========
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # ========== H2 控制台 ==========
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # ========== JPA 配置 ==========
+  jpa:
+    hibernate:
+      # 开发环境: create-drop (启动创建, 关闭删除)
+      # 生产环境: validate 或 none
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ========== SQL 初始化 ==========
+  # SB3 重大变化: sql.init.mode 默认值从 ALWAYS 改为 NEVER!
+  # SB2: 默认 always, schema.sql 和 data.sql 自动执行
+  # SB3: 必须显式设置, 否则 SQL 脚本不会执行
+  sql:
+    init:
+      mode: always
+
+# ========== Swagger / OpenAPI ==========
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# ========== 自定义配置 ==========
+app:
+  audit:
+    enabled: true

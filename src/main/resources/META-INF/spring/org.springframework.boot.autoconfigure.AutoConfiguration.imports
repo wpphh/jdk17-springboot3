@@ -1,0 +1,12 @@
+# SB3 自动配置注册文件
+#
+# SB2 做法: 在 META-INF/spring.factories 中注册:
+#   org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#     com.example.demo.autoconfig.AuditAutoConfiguration
+#
+# SB3 做法: 使用此文件 (AutoConfiguration.imports)
+# - 每行一个全限定类名
+# - 文件路径: META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+# - 这是 SB3.2+ 的标准方式, spring.factories 中的自动配置已不生效
+
+com.example.demo.autoconfig.AuditAutoConfiguration
